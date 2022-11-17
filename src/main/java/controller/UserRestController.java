@@ -1,11 +1,9 @@
 package controller;
 
+import model.dto.UserRequest;
 import model.dto.UserResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.UserService;
 
 
@@ -21,5 +19,10 @@ public class UserRestController {
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUser(@PathVariable Long id) {
         return ResponseEntity.ok().body(userService.getUser(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<UserResponse> addUser(@RequestBody UserRequest dto){
+        return ResponseEntity.ok().body(userService.addUser(dto));
     }
 }
